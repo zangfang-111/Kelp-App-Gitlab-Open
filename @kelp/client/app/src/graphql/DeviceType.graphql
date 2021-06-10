@@ -1,0 +1,64 @@
+fragment BasicDeviceInfo on Device {
+  id
+  nodeId
+  cid
+}
+
+fragment FullDeviceInfo on Device {
+  ...BasicDeviceInfo
+  identifiers
+  deviceType
+  createdAt
+  maker
+  model
+  name
+  ownership {
+    id
+    pallet
+  }
+  ownershipVerified
+  ownershipCreatedAt
+  poeId
+}
+
+query MyDevices {
+  devices {
+    totalCount
+    nodes {
+      ...FullDeviceInfo
+    }
+  }
+}
+
+query PoCloForVerification($ids: [String!]) {
+  devices(filter: { cid: { in: $ids } }) {
+    totalCount
+    nodes {
+      ...FullDeviceInfo
+    }
+  }
+}
+
+mutation AddOwnershipToDevices(
+  $cid: String!
+  $statementId: String!
+  $pallet: String!
+  $verified: Boolean!
+  $createdAt: Datetime!
+) {
+  updateDeviceByCid(
+    input: {
+      patch: {
+        ownership: { id: $statementId, pallet: $pallet }
+        ownershipCreatedAt: $createdAt
+        ownershipVerified: $verified
+      }
+      cid: $cid
+    }
+  ) {
+    clientMutationId
+    device {
+      ...FullDeviceInfo
+    }
+  }
+}

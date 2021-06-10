@@ -1,0 +1,42 @@
+{
+  "component": {
+    "prefix": "rc",
+    "description": "Simple react component",
+    "body": [
+      "import * as React from 'react'",
+      "\n",
+      "const ${1:${TM_FILENAME_BASE}}: React.FC = () => {",
+      "\treturn (",
+      "\t\t<${2:div}>",
+      "\t\t\t${0}",
+      "\t\t</${2:div}>",
+      "\t\t)",
+      "\t}",
+      "\n",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ]
+  },
+  "componentWithProps": {
+    "prefix": "rcp",
+    "description": "Simple React Component with Props interface",
+    "body": [
+      "import * as React from 'react'",
+      "\n",
+      "export interface ${1:${TM_FILENAME_BASE}}Props {",
+      "\tprop: any",
+      "}",
+      "\n",
+      "const ${1:${TM_FILENAME_BASE}}: React.FC<${1:${TM_FILENAME_BASE}}Props> = (props) => {",
+      "\tconst {prop} = props",
+      "\n",
+      "\treturn (",
+      "\t\t<${2:div}>",
+      "\t\t\t${0}",
+      "\t\t</${2:div}>",
+      "\t\t)",
+      "\t}",
+      "\n",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ]
+  }
+}

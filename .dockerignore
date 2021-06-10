@@ -1,0 +1,11 @@
+*/*/node_modules/
+*/*/dist/
+docker-compose.yml
+devops/
+docs/
+temp/
+.vscode/
+*/*/tsconfig.tsbuildinfo
+*/*/*.log
+.env
+.env.dev

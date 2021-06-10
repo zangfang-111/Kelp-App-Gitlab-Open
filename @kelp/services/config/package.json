@@ -1,0 +1,10 @@
+{
+  "name": "@kelp/config",
+  "version": "0.1.0",
+  "author": "Daniel Maricic <daniel@woss.io>",
+  "license": "Apache 2.0",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0"
+  }
+}

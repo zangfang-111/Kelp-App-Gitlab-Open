@@ -1,0 +1,26 @@
+mutation CreateDevice(
+  $cid: String!
+  $deviceType: Devicetype!
+  $identifiers: JSON
+  $maker: String
+  $model: String
+  $name: String
+) {
+  createDevice(
+    input: {
+      device: {
+        cid: $cid
+        deviceType: $deviceType
+        identifiers: $identifiers
+        maker: $maker
+        model: $model
+        name: $name
+      }
+    }
+  ) {
+    device {
+      nodeId
+      id
+    }
+  }
+}

@@ -1,0 +1,71 @@
+query MediaPreview($id: Int!) {
+  media(id: $id) {
+    ...BasicMediaInfoFragment
+    aperture
+    focalLength
+    shutterSpeed
+    didFlashFired
+    exposureTime
+    exposureBias
+    exposureProgram
+    meteringMode
+    isoSpeedRating
+    gps
+    keywords
+    isVideo
+    dateCreated
+    devices {
+      nodes {
+        nodeId
+        id
+        cid
+        deviceType
+        identifiers
+        maker
+        model
+        name
+      }
+    }
+    albums {
+      nodes {
+        nodeId
+        id
+        cid
+        description
+        slug
+        title
+      }
+    }
+    renditions(filter: { isMaster: { equalTo: true } }) {
+      nodes {
+        nodeId
+        id
+        size
+        fileFormat
+        ...MasterRenditionFragment
+      }
+    }
+  }
+}
+
+query MediaKeywords($id: Int!) {
+  media(id: $id) {
+    keywords
+  }
+}
+
+query MediaCopyrights($id: Int!) {
+  media(id: $id) {
+    id
+    nodeId
+    copyrights {
+      nodes {
+        nodeId
+        id
+        statementId
+        signer
+      }
+      totalCount
+    }
+  }
+}

@@ -1,0 +1,100 @@
+version: '3.6'
+services:
+  main:
+    image: kelpdigital/apps:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILDKIT_INLINE_CACHE: 1
+      target: base
+  fileUpload:
+    image: kelpdigital/fileupload
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: file-upload
+      cache_from:
+        - kelpdigital/apps:latest
+    env_file: .env
+    ports:
+      - 1223:1223
+  macula:
+    image: kelpdigital/macula
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: macula
+      cache_from:
+        - kelpdigital/apps:latest
+    env_file: .env
+    ports:
+      - 9876:9876
+    depends_on:
+      - server
+  lightroom:
+    image: kelpdigital/lightroom
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lightroom
+      cache_from:
+        - kelpdigital/apps:latest
+    env_file: .env
+    ports:
+      - 7665:7665
+    depends_on:
+      - server
+  server:
+    image: kelpdigital/server
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: server
+      cache_from:
+        - kelpdigital/apps:latest
+    env_file: .env
+    ports:
+      - 7666:7666
+    depends_on:
+      - db
+  worker:
+    image: kelpdigital/worker
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: worker
+      cache_from:
+        - kelpdigital/apps:latest
+    env_file: .env
+    depends_on:
+      - db
+  client:
+    image: kelpdigital/client
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: client
+      cache_from:
+        - kelpdigital/apps:latest
+    env_file: .env
+    ports:
+      - 1234:80
+    depends_on:
+      - server
+  db:
+    image: kelpdigital/postgres
+    build:
+      context: ./devops/postgres
+      dockerfile: Dockerfile
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_USER: '${DB_USER}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD}'
+    ports:
+      - '${DATABASE_PORT}:${DATABASE_PORT}'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:

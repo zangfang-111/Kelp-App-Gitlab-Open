@@ -1,0 +1,14 @@
+logs
+node_modules
+build
+.cache
+dist
+.env*
+tsconfig.tsbuildinfo
+yarn-error.log
+.parcel-cache
+*.Identifier
+*.log
+data/data
+data/certs
+*.env

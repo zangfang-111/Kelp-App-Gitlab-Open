@@ -1,0 +1,33 @@
+fragment BasicMediaInfoFragment on Media {
+  nodeId
+  id
+  title
+  headline
+  caption
+}
+
+fragment BasicMediaInfoFragmentWithMasterRendition on Media {
+  ...BasicMediaInfoFragment
+  renditions(filter: { isMaster: { equalTo: true } }) {
+    nodes {
+      ...MasterRenditionFragment
+    }
+  }
+}
+
+query MediaReadyForCopyright {
+  mediaReadyForCopyright {
+    totalCount
+    nodes {
+      nodeId
+      id
+      poeId
+      renditions(filter: { isMaster: { equalTo: true } }) {
+        nodes {
+          cid
+          src @client
+        }
+      }
+    }
+  }
+}

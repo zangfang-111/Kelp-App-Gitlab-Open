@@ -1,0 +1,41 @@
+# Local app state schema
+extend type Query {
+  selectedMedia: [String!]!
+  isLoggedIn: Boolean!
+  notifications: [Notification]
+}
+
+extend type Rendition {
+  src: String!
+}
+
+query IsLoggedInQuery {
+  isLoggedIn @client
+}
+
+query ActiveNotification {
+  notifications @client {
+    id
+    message
+    expiration
+    error
+  }
+}
+
+fragment PageInfoFragment on PageInfo {
+  endCursor
+  hasNextPage
+  hasPreviousPage
+  startCursor
+}
+
+query SelectedMedia {
+  selectedMedia @client
+}
+
+type Notification {
+  id: String!
+  message: String!
+  expiration: Int!
+  error: Boolean!
+}

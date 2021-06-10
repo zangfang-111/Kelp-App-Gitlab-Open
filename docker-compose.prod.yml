@@ -1,0 +1,77 @@
+version: '3.6'
+services:
+  proxy:
+    image: jwilder/nginx-proxy:alpine
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./data/certs:/etc/nginx/certs
+      - ./devops/vhost.d:/etc/nginx/vhost.d:ro
+  fileUpload:
+    image: kelpdigital/fileupload
+    environment:
+      - VIRTUAL_HOST=upload.kelp.digital
+      - VIRTUAL_PORT=1223
+    env_file: .fileupload.env
+  macula:
+    image: kelpdigital/macula
+    restart: always
+    env_file: .env
+    environment:
+      - VIRTUAL_HOST=macula.kelp.digital
+      - VIRTUAL_PORT=9876
+    depends_on:
+      - proxy
+      - server
+  lightroom:
+    image: kelpdigital/lightroom
+    restart: always
+    env_file: .env
+    environment:
+      - VIRTUAL_HOST=lightroom.kelp.digital
+      - VIRTUAL_PORT=7665
+    depends_on:
+      - proxy
+      - server
+  server:
+    image: kelpdigital/server
+    restart: always
+    env_file: .env
+    environment:
+      - VIRTUAL_HOST=api.kelp.digital
+      - VIRTUAL_PORT=7666
+    depends_on:
+      - proxy
+      - db
+  worker:
+    image: kelpdigital/worker
+    restart: always
+    env_file: .env
+    depends_on:
+      - db
+  client:
+    image: kelpdigital/client
+    restart: always
+    env_file: .env
+    environment:
+      - VIRTUAL_HOST=kelp.digital
+      - VIRTUAL_PORT=80
+    depends_on:
+      - proxy
+      - server
+  db:
+    image: kelpdigital/postgres
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_USER: '${DB_USER}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD}'
+    ports:
+      - '${DATABASE_PORT}:${DATABASE_PORT}'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:

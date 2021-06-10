@@ -1,0 +1,52 @@
+version: '3.6'
+services:
+  fileUpload:
+    image: kelpdigital/fileupload
+    env_file: .env
+    restart: unless-stopped
+    ports:
+      - 1223:1223
+  macula:
+    image: kelpdigital/macula
+    env_file: .env
+    restart: unless-stopped
+    ports:
+      - 9876:9876
+    depends_on:
+      - server
+  lightroom:
+    image: kelpdigital/lightroom
+    env_file: .env
+    restart: unless-stopped
+    ports:
+      - 7665:7665
+    depends_on:
+      - server
+  server:
+    image: kelpdigital/server
+    env_file: .env
+    restart: unless-stopped
+    ports:
+      - 7666:7666
+    depends_on:
+      - db
+  worker:
+    image: kelpdigital/worker
+    env_file: .env
+    restart: unless-stopped
+    depends_on:
+      - db
+  db:
+    image: kelpdigital/postgres
+    env_file: .env
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: '${DB_USER}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD}'
+    ports:
+      - '${DATABASE_PORT}:${DATABASE_PORT}'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

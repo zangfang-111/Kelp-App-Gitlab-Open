@@ -1,0 +1,51 @@
+fragment BasicLIghtroomMediaInfo on LightroomMedia {
+  id
+  nodeId
+  mediaId
+  uuidIdentifier
+}
+
+mutation SyncLightroomMedia(
+  $mediaId: Int
+  $lrUuidIdentifier: String!
+  $currentCollectionId: Int!
+  $catalogId: Int!
+  $localIdentifier: Int!
+  $title: String
+  $headline: String
+  $caption: String
+  $isVirtualCopy: Boolean
+  $masterMedia: LightroomMasterMediaInputPayload
+  $gps: GpsInputPayload
+) {
+  lightroomSyncMedia(
+    input: {
+      mediaId: $mediaId
+      lrUuidIdentifier: $lrUuidIdentifier
+      currentCollectionId: $currentCollectionId
+      catalogId: $catalogId
+      localIdentifier: $localIdentifier
+      title: $title
+      headline: $headline
+      caption: $caption
+      isVirtualCopy: $isVirtualCopy
+      masterMedia: $masterMedia
+      gps: $gps
+    }
+  ) {
+    media {
+      nodeId
+      id
+      mediaId
+      updatedAt
+    }
+  }
+}
+
+mutation LightroomRemoveMediaFromCollection($mediaId: Int!, $lrCollectionId: Int!) {
+  lightroomRemoveMediaFromCollection(
+    input: { mediaId: $mediaId, lrCollectionId: $lrCollectionId }
+  ) {
+    deleted
+  }
+}

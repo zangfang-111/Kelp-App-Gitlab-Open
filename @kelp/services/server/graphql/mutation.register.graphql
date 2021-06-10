@@ -1,0 +1,29 @@
+mutation Register($input: RegisterInput!) {
+  me: register(input: $input) {
+    user {
+      nodeId
+      id
+      givenName
+      familyName
+      nickname
+      username
+      avatarUrl
+    }
+  }
+}
+# {
+#   "input": {
+#     "user":
+#     {
+#       "username": "woss",
+#       "email": "daniel@woss.io",
+#       "name": "Daniel Maricic",
+#       "email_verified": true,
+#       "avatarUrl": "https://s.gravatar.com/avatar/c18ee6673d2980db6961798498ed294d?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fda.png"
+#     },
+#     "authService": {
+#       "service": "auth0",
+#       "identifier": "5db02ea83e17cf0e0b423595"
+#     }
+#   }
+# }

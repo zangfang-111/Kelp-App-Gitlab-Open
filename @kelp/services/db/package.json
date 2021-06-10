@@ -1,0 +1,25 @@
+{
+  "name": "@kelp/db",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "gm": "node -r @kelp/config/env node_modules/.bin/graphile-migrate",
+    "migrate": "pnpm gm migrate",
+    "watch": "pnpm gm watch",
+    "commit": "pnpm gm commit",
+    "uncommit": "pnpm gm uncommit",
+    "reset": "pnpm gm reset",
+    "dump": "pnpm gm migrate && pnpm gm reset --shadow --erase && pnpm gm migrate --shadow --forceActions",
+    "wipe-if-demo": "./scripts/wipe-if-demo",
+    "test": "NODE_ENV=test node -r @kelp/config/env ./node_modules/.bin/jest"
+  },
+  "dependencies": {
+    "graphile-migrate": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^7.14.1",
+    "graphile-worker": "^0.9.0",
+    "jest": "^25.5.4",
+    "pg": "^8.0.3"
+  }
+}

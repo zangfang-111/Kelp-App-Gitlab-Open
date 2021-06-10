@@ -1,0 +1,54 @@
+fragment MasterRenditionFragment on Rendition {
+  cid
+  imageStoragePath
+  src @client
+  width
+  height
+  isMaster
+  aspectRatio
+}
+
+mutation CreateRendition(
+  $cid: String!
+  $pixelCid: String!
+  $metadataCid: String!
+  $height: Int!
+  $width: Int!
+  $imageStoragePath: String!
+  $metadataStoragePath: String!
+  $isMaster: Boolean
+  $fileFormat: String
+  $mediaId: Int!
+) {
+  __typename
+  createRendition(
+    input: {
+      rendition: {
+        cid: $cid
+        pixelCid: $pixelCid
+        metadataCid: $metadataCid
+        height: $height
+        width: $width
+        imageStoragePath: $imageStoragePath
+        metadataStoragePath: $metadataStoragePath
+        isMaster: $isMaster
+        fileFormat: $fileFormat
+        mediaId: $mediaId
+      }
+    }
+  ) {
+    rendition {
+      id
+      cid
+    }
+  }
+}
+
+query GetRenditionByCid($cid: String!) {
+  renditionByCid(cid: $cid) {
+    nodeId
+    id
+    mediaId
+    ...MasterRenditionFragment
+  }
+}

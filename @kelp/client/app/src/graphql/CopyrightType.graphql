@@ -1,0 +1,7 @@
+mutation UpdateMediaCopyright($input: [MediaCopyright!]!) {
+  updateMediaCopyright(input: $input) {
+    success
+    inserted
+    passed
+  }
+}

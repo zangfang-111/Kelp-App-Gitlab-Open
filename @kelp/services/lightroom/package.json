@@ -1,0 +1,48 @@
+{
+  "name": "@kelp/lightroom",
+  "private": true,
+  "version": "0.1.0",
+  "main": "dist/index",
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
+  "scripts": {
+    "build": "rimraf dist; webpack --config webpack.prod.js",
+    "start": "ts-node-dev -r @kelp/config/env -r tsconfig-paths/register src/server.ts",
+    "test": "NODE_ENV=test node -r @kelp/config/env ./node_modules/.bin/jest",
+    "prod": "node dist/src/index.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.729.0",
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "chalk": "^4.0.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "debug": "^4.2.0",
+    "exifreader": "^3.12.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "cross-fetch": "^3.0.6",
+    "imghash": "^0.0.7",
+    "jwks-rsa": "^1.9.0",
+    "memory-cache": "^0.2.0",
+    "mime-types": "^2.1.27",
+    "nanoid": "^3.1.12",
+    "newrelic": "^6.13.0",
+    "ramda": "^0.27.1",
+    "graphql": "^15.4.0",
+    "graphql-request": "^3.4.0"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.56",
+    "tsconfig-paths": "^3.9.0",
+    "tslib": "^1.11.1",
+    "@types/mime-types": "^2.1.0",
+    "@types/compression": "^1.7.0",
+    "@types/memory-cache": "^0.2.1",
+    "jest": "^25.5.4",
+    "ts-node": "^8.10.1"
+  }
+}

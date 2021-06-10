@@ -1,0 +1,20 @@
+fragment BasicAlbumInfoFragment on Album {
+  nodeId
+  id
+  title
+}
+
+fragment ExtendedAlbumInfoFragment on Album {
+  nodeId
+  id
+  cid
+  slug
+  title
+  description
+  isPrivate
+  isSmart
+  smartRules
+  metadata
+  createdAt
+  updatedAt
+}

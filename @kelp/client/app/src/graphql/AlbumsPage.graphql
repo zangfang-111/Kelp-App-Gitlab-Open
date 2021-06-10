@@ -1,0 +1,23 @@
+query GetAlbums {
+  albums {
+    nodes {
+      ...BasicAlbumInfoFragment
+      media(first: 1, filter: { isVideo: { equalTo: false } }) {
+        nodes {
+          ...BasicMediaInfoFragmentWithMasterRendition
+        }
+      }
+    }
+  }
+}
+
+query GetAlbumDetails($id: Int!) {
+  album(id: $id) {
+    ...ExtendedAlbumInfoFragment
+    media(orderBy: DATE_CREATED_DESC) {
+      nodes {
+        ...BasicMediaInfoFragmentWithMasterRendition
+      }
+    }
+  }
+}

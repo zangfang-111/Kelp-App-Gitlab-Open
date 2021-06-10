@@ -1,0 +1,36 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    // "baseUrl": ".",
+    // "paths": {
+    //   "@kelp/config": ["@kelp/services/config/src"],
+    //   "@kelp/config/*": ["@kelp/services/config/src/*"],
+    //   "@kelp/server": ["@kelp/services/server/src"],
+    //   "@kelp/server/*": ["@kelp/services/server/src/*"],
+    //   "@kelp/graphql": ["@kelp/services/graphql"],
+    //   "@kelp/graphql/*": ["@kelp/services/graphql/*"],
+    //   "@kelp/worker": ["@kelp/services/worker/src"],
+    //   "@kelp/worker/*": ["@kelp/services/worker/src/*"]
+    // },
+    "typeRoots": ["typings", "node_modules/@types"]
+  },
+  // "include": ["**/src/**/*"],
+  "exclude": ["dist/**/*", "**/dist/**/*"]
+  // "references": [
+  //   // {
+  //   //   "path": "@kelp/client/app"
+  //   // },
+  //   {
+  //     "path": "@kelp/services/config"
+  //   },
+  //   {
+  //     "path": "@kelp/services/graphql"
+  //   },
+  //   {
+  //     "path": "@kelp/services/server"
+  //   },
+  //   {
+  //     "path": "@kelp/services/worker"
+  //   }
+  // ]
+}

@@ -1,0 +1,3 @@
+*/2 * * * * createPoe
+*/1 * * * * mediaPoeExists
+*/1 * * * * devicePoeExists

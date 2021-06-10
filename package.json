@@ -1,0 +1,40 @@
+{
+  "license": "Apache-2.0",
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "start:client": "pnpm run start --filter=@kelp/app",
+    "db": "pnpm run gm  --filter=@kelp/db",
+    "lint": "yarn prettier:check && eslint --ext .ts,.tsx,.graphql .",
+    "lint:fix": "eslint --ext .ts,.tsx,.graphql . --fix; prettier --ignore-path .eslintignore --write '**/*.{js,jsx,ts,tsx,graphql,md}'",
+    "prettier:check": "prettier --ignore-path .eslintignore --check '**/*.{ts,tsx,graphql,md}'",
+    "setup:db": "node ./scripts/setup-db.js"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "pm2": "^4.5.0",
+    "ts-jest": "^26.4.4",
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-graphql": "^4.0.0",
+    "eslint-plugin-jest": "^24.1.3",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "inquirer": "^8.0.0",
+    "prettier": "^2.2.0",
+    "typescript": "^4.1.2"
+  },
+  "resolutions": {
+    "cids": "1.0.0",
+    "multicodec": "2.0.0"
+  },
+  "publishConfig": {
+    "registry": "http://localhost:4873"
+  },
+  "engines": {
+    "pnpm": ">=6"
+  }
+}

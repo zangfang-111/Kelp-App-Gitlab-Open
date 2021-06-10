@@ -1,0 +1,38 @@
+mutation SyncRendition(
+  $renditionId: Int
+  $mediaId: Int!
+  $cid: String!
+  $height: Int!
+  $width: Int!
+  $imageStoragePath: String!
+  $fileFormat: String!
+  $fileName: String!
+  $fileVersion: String!
+  $isMaster: Boolean!
+  $isSmartPreview: Boolean
+  $size: Int!
+) {
+  lightroomSyncRendition(
+    rendition: {
+      mediaId: $mediaId
+      cid: $cid
+      height: $height
+      width: $width
+      imageStoragePath: $imageStoragePath
+      fileFormat: $fileFormat
+      fileName: $fileName
+      fileVersion: $fileVersion
+      isMaster: $isMaster
+      isSmartPreview: $isSmartPreview
+      size: $size
+    }
+    renditionId: $renditionId
+  ) {
+    rendition {
+      id
+      nodeId
+      mediaId
+      updatedAt
+    }
+  }
+}

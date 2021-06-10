@@ -1,0 +1,39 @@
+fragment BasicLIghtroomCollectionInfo on LightroomCollection {
+  nodeId
+  id
+  title
+  slug
+  searchDescription
+  createdAt
+  updatedAt
+  albumList {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}
+mutation SyncLightroomCollection(
+  $id: Int
+  $title: String!
+  $catalogId: Int!
+  $localIdentifier: Int!
+  $searchDescription: JSON
+  $isSmart: Boolean
+) {
+  lightroomSyncCollection(
+    input: {
+      id: $id
+      title: $title
+      catalogId: $catalogId
+      localIdentifier: $localIdentifier
+      isSmart: $isSmart
+      searchDescription: $searchDescription
+    }
+  ) {
+    collection {
+      ...BasicLIghtroomCollectionInfo
+    }
+  }
+}

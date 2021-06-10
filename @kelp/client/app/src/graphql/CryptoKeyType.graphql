@@ -1,0 +1,40 @@
+fragment CryptoKeyBasicFragment on CryptoKey {
+  nodeId
+  id
+  cid
+  isPrimary
+  publicKey
+  privateKey
+  keyId
+  name
+  slug
+  implementation
+}
+
+fragment CryptoKeyExtendedFragment on CryptoKey {
+  algorithm
+  creationTime
+  curve
+  expirationTime
+  fingerprint
+  createdAt
+  updatedAt
+}
+
+query GetMyCryptoKeysBasic {
+  cryptoKeys {
+    totalCount
+    nodes {
+      ...CryptoKeyBasicFragment
+    }
+  }
+}
+query GetMyCryptoKeysExtended {
+  cryptoKeys {
+    totalCount
+    nodes {
+      ...CryptoKeyBasicFragment
+      ...CryptoKeyExtendedFragment
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "@kelp/graphql",
+  "private": true,
+  "author": "Daniel Maricic <daniel@woss.io>",
+  "license": "Apache-2.0",
+  "version": "0.1.0",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "yarn codegen && tsc -b .",
+    "watch": "yarn codegen --watch",
+    "codegen": "graphql-codegen --config codegen.yml"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.3.14",
+    "graphql-request": "^3.4.0",
+    "graphql-tag": "^2.12.3",
+    "react": "^17.0.2",
+    "tslib": "^1.14.1"
+  },
+  "devDependencies": {
+    "@apollo/client": "^3.3.14",
+    "@apollo/react-common": "^3.1.4",
+    "@apollo/react-hooks": "^3.1.5",
+    "@graphql-codegen/add": "^1.13.4",
+    "@graphql-codegen/cli": "^1.21.3",
+    "@graphql-codegen/typescript": "^1.21.1",
+    "@graphql-codegen/typescript-document-nodes": "^1.17.8",
+    "@graphql-codegen/typescript-graphql-request": "^3.0.0",
+    "@graphql-codegen/typescript-operations": "^1.17.8",
+    "@graphql-codegen/typescript-react-apollo": "^2.2.3",
+    "@graphql-codegen/typescript-resolvers": "^1.17.7",
+    "graphql": "^15.5.0",
+    "jest": "^26.6.3"
+  },
+  "publishConfig": {
+    "registry": "http://localhost:4873"
+  }
+}

@@ -1,0 +1,11 @@
+# Fetches timeline media data with infinite scrolling
+query TimelineMedia($first: Int!, $after: Cursor) {
+  medias(first: $first, after: $after, orderBy: DATE_CREATED_DESC) {
+    nodes {
+      ...BasicMediaInfoFragmentWithMasterRendition
+    }
+    pageInfo {
+      ...PageInfoFragment
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "skipLibCheck": true,
+    "rootDir": ".",
+    "outDir": ".",
+    "tsBuildInfoFile": "tsconfig.tsbuildinfo",
+    "declarationDir": ".",
+    "lib": ["es2018", "esnext.asynciterable"],
+    "target": "ES6",
+    "module": "esnext",
+    "jsx": "react",
+    "composite": true
+  },
+  "include": ["./index.tsx", "./nodes.ts"]
+}

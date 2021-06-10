@@ -1,0 +1,32 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "ES6",
+    "moduleResolution": "node",
+    "jsx": "react",
+    // "baseUrl": "./src/",
+    /* noEmit - Snowpack builds (emits) files, not tsc. */
+    "noEmit": false,
+    /* Additional Options */
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "importsNotUsedAsValues": "error",
+    "lib": ["WebWorker", "ES6", "dom", "dom.iterable", "esnext"],
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "removeComments": false,
+    "isolatedModules": true
+  },
+  "include": ["src/**/*", "declarations.d.ts"],
+  "references": [
+    {
+      "path": "../../services/graphql"
+    }
+  ]
+}

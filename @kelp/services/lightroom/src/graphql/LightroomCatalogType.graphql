@@ -1,0 +1,44 @@
+fragment BasicLIghtroomCatalogInfo on LightroomCatalog {
+  nodeId
+  id
+  name
+  slug
+  createdAt
+  updatedAt
+}
+
+fragment LightroomCatalogWithCollections on LightroomCatalog {
+  nodeId
+  id
+  collections
+  collectionSets
+}
+
+query LightroomCatalog($id: Int!) {
+  lightroomCatalog(id: $id) {
+    ...BasicLIghtroomCatalogInfo
+    ...LightroomCatalogWithCollections
+  }
+}
+
+mutation SyncLightroomCatalog(
+  $id: Int
+  $name: String!
+  $tags: [String]
+  $collections: JSON!
+  $collectionSets: JSON!
+) {
+  lightroomSyncCatalog(
+    input: {
+      id: $id
+      name: $name
+      tags: $tags
+      collections: $collections
+      collectionSets: $collectionSets
+    }
+  ) {
+    catalog {
+      ...BasicLIghtroomCatalogInfo
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "name": "@kelp/macula",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build": "rimraf dist; webpack --config webpack.prod.js",
+    "build:old": "tsc --build tsconfig.json",
+    "start": "ts-node-dev -r @kelp/config/env -r tsconfig-paths/register src/server.ts",
+    "test": "NODE_ENV=test node -r @kelp/config/env ./node_modules/.bin/jest"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.729.0",
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "chalk": "^4.0.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "cross-fetch": "^3.0.6",
+    "exifreader": "^3.12.0",
+    "express": "^4.17.1",
+    "imghash": "^0.0.7",
+    "jwks-rsa": "^1.9.0",
+    "memory-cache": "^0.2.0",
+    "mime-types": "^2.1.27",
+    "nanoid": "^3.1.12",
+    "newrelic": "^6.13.0",
+    "ramda": "^0.27.1",
+    "redis": "^3.0.2",
+    "sharp": "^0.27.0",
+    "graphql": "^15.4.0",
+    "graphql-request": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/mime-types": "^2.1.0",
+    "source-map-support": "^0.5.13",
+    "tslib": "^1.11.1",
+    "@types/compression": "^1.7.0",
+    "@types/memory-cache": "^0.2.1",
+    "jest": "^25.5.4",
+    "ts-node": "^8.10.1",
+    "node-loader": "^1.0.2",
+    "rimraf": "^3.0.2",
+    "ts-loader": "^8.0.14",
+    "ts-node-dev": "^1.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
+    "typescript": "^4.1.3",
+    "webpack": "^5.12.2",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.1",
+    "webpack-node-externals": "^2.5.2"
+  }
+}
